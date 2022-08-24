@@ -1,0 +1,10 @@
+.env
+.cache
+node_modules
+_site
+package-lock.json
+.netlify
+netlify/functions/secure/**
+!netlify/functions/secure/index.js
+netlify/edge-functions/_generated
+_generated*

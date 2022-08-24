@@ -1,0 +1,3 @@
+{% if eleventyNavigation and eleventyNavigation.parent %}
+  {{ pageNav | eleventyNavigationBreadcrumb: eleventyNavigation.parent, navOptions | eleventyNavigationToHtml }}
+{% endif %}

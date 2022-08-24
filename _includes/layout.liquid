@@ -1,0 +1,43 @@
+---
+description: Launch Scout Employee Handbook
+title: Launch Scout Handbook
+eleventyNavigation:
+  parent: Table of Contents
+navOptions:
+  includeSelf: true
+  allowMissing: true
+---
+
+<!doctype html>
+<html lang="en" class="h-full bg-gray-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ eleventyNavigation.title | default: eleventyNavigation.key | default: title }}</title>
+    <meta name="description" content="{{ eleventyNavigation.excerpt | default: description }}">
+  </head>
+  <body>
+    {% if user %}
+      {% if isUserValid == "true" %}
+        {% include "breadcrumbs" %}
+        {{ content }}
+      {% else %}
+        <p>You do not have access to this page.</p>
+      {% endif %}
+  
+    {% else %}
+      {% include "login" %}
+    {% endif %}
+
+    <script defer>
+      window.onload = () => {
+        const pageUrlItem = document.querySelector("#pageurl")
+        const attribute = "value"
+        const currentValue = pageUrlItem?.getAttribute(attribute)
+        const newValue = `${currentValue}${window.location.hash}`
+        pageUrlItem?.setAttribute(attribute, newValue)
+    
+      }
+    </script>
+  </body>
+  </html>
