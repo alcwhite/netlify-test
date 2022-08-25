@@ -6,6 +6,7 @@ const EleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 
 module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("assets");
+  eleventyConfig.addPassthroughCopy("_headers");
 
   eleventyConfig.addPlugin(EleventyServerlessBundlerPlugin, {
     name: "secure",
