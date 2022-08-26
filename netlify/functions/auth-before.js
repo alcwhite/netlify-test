@@ -19,8 +19,7 @@ exports.handler = async (event, context) => {
   let oauth = new OAuth(provider);
   let config = oauth.config;
 
-  const redirectUrl = (new URL(event.queryStringParameters.securePath, config.secureHost)).toString();
-
+  const redirectUrl = (new URL(event.queryStringParameters.securePath, event.queryStringParameters.fullPath || config.secureHost)).toString();
   /* Generate authorizationURI */
   const authorizationURI = oauth.authorizationCode.authorizeURL({
     redirect_uri: config.redirect_uri,
@@ -31,6 +30,24 @@ exports.handler = async (event, context) => {
   });
 
   // console.log( "[auth-start] SETTING COOKIE" );
+
+  // skip auth for previews, branch deploys, and local dev
+  if (process.env.CONTEXT !== "production") {
+    return {
+      statusCode: 302,
+      headers: {
+        Location: `${redirectUrl}?noop`,
+        'Cache-Control': 'no-cache' // Disable caching of this response
+      },
+      multiValueHeaders: {
+        'Set-Cookie': [
+          getCookie("isUserValid", true, oauth.config.sessionExpiration),
+          getCookie("user", true, oauth.config.sessionExpiration)
+        ]
+      },
+      body: '' // return body for local dev
+    }
+  }
 
   /* Redirect user to authorizationURI */
   return {

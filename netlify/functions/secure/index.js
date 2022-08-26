@@ -46,6 +46,7 @@ const handler = async (event) => {
     functionsDir: "./netlify/functions/",
     precompiledCollections,
     config: (eleventyConfig) => {
+      eleventyConfig.addGlobalData("context", process.env.CONTEXT)
       if (user) {
         eleventyConfig.addGlobalData("user", user);
         eleventyConfig.addGlobalData("isUserValid", isUserValid)

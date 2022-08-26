@@ -20,7 +20,8 @@
     "url": "https://github.com/alcwhite/netlify-test/issues"
   },
   "devDependencies": {
-    "netlify-cli": "^10.0.0"
+    "netlify-cli": "^10.0.0",
+    "netlify-plugin-inline-functions-env": "^1.0.9"
   },
   "dependencies": {
     "@11ty/eleventy": "^1.0.1",
