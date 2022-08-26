@@ -1,15 +1,15 @@
 [context.branch-deploy]
 command = """
-echo $PREVIEW_LOGIN && npm run build && echo -e "/*
+npm run build && echo -e "/*
   Basic-Auth: ${PREVIEW_LOGIN}:${PREVIEW_PASSWORD}" > _site/_headers"""
 
   [context.branch-deploy.environment]
-  IS_PREVIEW = "true"
+  IS_PREVIEW = true
 
 [context.deploy-preview]
 command = """
-echo $PREVIEW_LOGIN && echo $IS_PREVIEW && echo "PREVIEW" && npm run build && echo -e "/*
+echo $PREVIEW_LOGIN && echo $IS_PREVIEW && echo $IS_PREVIEW === "true" && echo "PREVIEW" && npm run build && echo -e "/*
   Basic-Auth: ${PREVIEW_LOGIN}:${PREVIEW_PASSWORD}" > _site/_headers"""
 
   [context.deploy-preview.environment]
-  IS_PREVIEW = "true"
+  IS_PREVIEW = true
