@@ -32,7 +32,7 @@ exports.handler = async (event, context) => {
   // console.log( "[auth-start] SETTING COOKIE" );
 
   // skip auth for previews, branch deploys, and local dev
-  if (process.env.IS_PREVIEW === "true" || process.env.NETLIFY_DEV === "true") {
+  if (process.env.CONTEXT !== "production") {
     return {
       statusCode: 302,
       headers: {
