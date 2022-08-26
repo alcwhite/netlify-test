@@ -33,7 +33,7 @@ exports.handler = async (event, context) => {
 
   // skip auth for previews, branch deploys, and local dev
   if (process.env.CONTEXT !== "production") {
-    const Location = process.env.CONTEXT === "dev" ? redirectUrl : `${process.env.DEPLOY_URL}${redirectUrl}`
+    const Location = process.env.CONTEXT === "dev" ? redirectUrl : `${process.env.URL.replace(/http(s)?:\/\//, "")}${redirectUrl}`
     return {
       statusCode: 302,
       headers: {
