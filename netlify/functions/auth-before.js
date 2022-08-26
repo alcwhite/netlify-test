@@ -33,11 +33,10 @@ exports.handler = async (event, context) => {
 
   // skip auth for previews, branch deploys, and local dev
   if (process.env.CONTEXT !== "production") {
-    const Location = redirectUrl
     return {
       statusCode: 302,
       headers: {
-        Location,
+        Location: `${redirectUrl}?noop`,
         'Cache-Control': 'no-cache' // Disable caching of this response
       },
       multiValueHeaders: {
