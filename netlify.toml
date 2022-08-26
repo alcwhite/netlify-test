@@ -13,6 +13,7 @@ package = "netlify-plugin-inline-functions-env"
 
   [plugins.inputs]
   include = [ "CONTEXT", "URL" ]
+  buildEvent = "onBuild"
 
 [[redirects]]
 from = "undefined"
