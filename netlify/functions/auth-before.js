@@ -19,7 +19,7 @@ exports.handler = async (event, context) => {
   let oauth = new OAuth(provider);
   let config = oauth.config;
 
-  const redirectUrl = (new URL(event.queryStringParameters.securePath, config.secureHost)).toString();
+  const redirectUrl = (new URL(event.queryStringParameters.securePath, event.queryStringParameters.fullPath || config.secureHost)).toString();
   /* Generate authorizationURI */
   const authorizationURI = oauth.authorizationCode.authorizeURL({
     redirect_uri: config.redirect_uri,
@@ -36,7 +36,7 @@ exports.handler = async (event, context) => {
     return {
       statusCode: 302,
       headers: {
-        Location: `${process.env.CONTEXT === "dev" ? redirectUrl : event.queryStringParameters.fullPath}?noop`,
+        Location: `${redirectUrl}?noop`,
         'Cache-Control': 'no-cache' // Disable caching of this response
       },
       multiValueHeaders: {

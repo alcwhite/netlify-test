@@ -1,5 +1,7 @@
 <form action="/.netlify/functions/auth-before">
   <input id="pageurl" type="hidden" name="securePath" value="{{ page.url | default: "/" }}">
-  <input id="pagefullurl" type="hidden" name="fullPath" value="">
+  {% if context != "dev" and context != "production" %}
+    <input id="pagefullurl" type="hidden" name="fullPath" value="">
+  {% endif %}
   <button type="submit" name="provider" value="github">Login with GitHub</button>
 </form>
