@@ -31,12 +31,14 @@ navOptions:
 
     <script defer>
       window.onload = () => {
-        const pageUrlItem = document.querySelector("#pageurl")
+        let pageUrlItem = document.querySelector("#pageurl")
         const attribute = "value"
         const currentValue = pageUrlItem?.getAttribute(attribute)
-        const newValue = `${currentValue}${window.location.hash}`
+        let newValue = `${currentValue}${window.location.hash}`
         pageUrlItem?.setAttribute(attribute, newValue)
-    
+        pageUrlItem = document.querySelector("#pagefullurl")
+        newValue = window.location.href
+        pageUrlItem?.setAttribute(attribute, newValue)
       }
     </script>
   </body>

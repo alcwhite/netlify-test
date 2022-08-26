@@ -36,7 +36,7 @@ exports.handler = async (event, context) => {
     return {
       statusCode: 302,
       headers: {
-        Location: `${redirectUrl}?noop`,
+        Location: `${process.env.CONTEXT === "dev" ? redirectUrl : event.queryStringParameters.fullPath}?noop`,
         'Cache-Control': 'no-cache' // Disable caching of this response
       },
       multiValueHeaders: {
