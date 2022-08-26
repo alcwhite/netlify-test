@@ -124,10 +124,10 @@ module.exports = {
   OAuth,
   tokens: {
     encode: (token) => {
-      return Buffer.from(token, "utf8").toString("base64");
+      return token ? Buffer.from(token, "utf8").toString("base64") : "";
     },
     decode: (token) => {
-      return Buffer.from(token, "base64").toString("utf8");
+      return token ? Buffer.from(token, "base64").toString("utf8") : "";
     }
   },
   getCookie,
