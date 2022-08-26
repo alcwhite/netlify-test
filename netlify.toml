@@ -7,3 +7,6 @@ npm run build && echo -e "/*
 command = """
 npm run build && echo -e "/*
   Basic-Auth: ${PREVIEW_LOGIN}:${PREVIEW_PASSWORD}" > _site/_headers"""
+
+[functions]
+directory = ".netlify/functions/"
