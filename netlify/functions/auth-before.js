@@ -1,6 +1,5 @@
 const { OAuth, getCookie, generateCsrfToken } = require("./util/auth.js");
 const providers = require('./util/providers.js');
-const DEV_ENVS = ["preview", "branch"]
 
 /* Do initial auth redirect */
 exports.handler = async (event, context) => {
@@ -31,8 +30,8 @@ exports.handler = async (event, context) => {
   });
 
   // console.log( "[auth-start] SETTING COOKIE" );
-  console.log("___ENV: ", process.env, process.env.NETLIFY_DEV, process.env.NODE_ENV)
-  if (DEV_ENVS.includes(process.env.NODE_ENV) || process.env.NETLIFY_DEV === "true") {
+  console.log("___ENV: ", process.env, process.env.NETLIFY_DEV, process.env.IS_PREVIEW)
+  if (process.env.IS_PREVIEW === "true") {
     console.log("I AM HERE")
     return {
       statusCode: 302,
