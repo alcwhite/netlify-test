@@ -1,18 +1,15 @@
-[build]
-command = 'sed -i "s|HEADER_LOGIN_PLACEHOLDER|${PREVIEW_LOGIN}|g" netlify.toml && sed -i "s|HEADER_PASSWORD_PLACEHOLDER|${PREVIEW_PASSWORD}|g" netlify.toml'
-
 [context.branch-deploy]
 command = """
-echo HEADER_LOGIN_PLACEHOLDER && npm run build && echo -e '/*
-  Basic-Auth: $HEADER_LOGIN_PLACEHOLDER:$HEADER_PASSWORD_PLACEHOLDER' > _site/_headers"""
+echo HEADER_LOGIN_PLACEHOLDER && npm run build && echo -e "/*
+  Basic-Auth: $HEADER_LOGIN_PLACEHOLDER:$HEADER_PASSWORD_PLACEHOLDER" > _site/_headers"""
 
   [context.branch-deploy.environment]
   IS_PREVIEW = "true"
 
 [context.deploy-preview]
 command = """
-echo $HEADER_LOGIN_PLACEHOLDER && npm run build && echo -e '/*
-  Basic-Auth: $HEADER_LOGIN_PLACEHOLDER:$HEADER_PASSWORD_PLACEHOLDER' > _site/_headers"""
+echo $HEADER_LOGIN_PLACEHOLDER && npm run build && echo -e "/*
+  Basic-Auth: $HEADER_LOGIN_PLACEHOLDER:$HEADER_PASSWORD_PLACEHOLDER" > _site/_headers"""
 
   [context.deploy-preview.environment]
   IS_PREVIEW = "true"
