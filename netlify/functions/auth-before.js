@@ -1,5 +1,6 @@
 const { OAuth, getCookie, generateCsrfToken } = require("./util/auth.js");
 const providers = require('./util/providers.js');
+const netlifyContext = require('/netlify-context')
 
 /* Do initial auth redirect */
 exports.handler = async (event, context) => {
